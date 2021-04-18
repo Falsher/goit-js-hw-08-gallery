@@ -7,6 +7,7 @@ const markUpGallery = galleryImg(galleryItems);
 imageGalleryList.insertAdjacentHTML('beforeend', markUpGallery);
 imageGalleryList.addEventListener('click', clickListImg);
 modalCloseBtn.addEventListener('click', funkClosedModal)
+modalImg.addEventListener('click', funkClosedModal)
 function galleryImg(images) {
   return images
     .map(({ preview, original, description }) => {
