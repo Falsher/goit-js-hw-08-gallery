@@ -5,9 +5,11 @@ const modalImg = document.querySelector('.lightbox__image');
 const modalCloseBtn = document.querySelector('.lightbox__button');
 const markUpGallery = galleryImg(galleryItems);
 imageGalleryList.insertAdjacentHTML('beforeend', markUpGallery);
+const bodyClose = document.querySelector('body')
 imageGalleryList.addEventListener('click', clickListImg);
 modalCloseBtn.addEventListener('click', funkClosedModal)
 modalImg.addEventListener('click', funkClosedModal)
+bodyClose.addEventListener('keyup', keyPress)
 function galleryImg(images) {
   return images
     .map(({ preview, original, description }) => {
@@ -40,4 +42,10 @@ if(!modalWindow.classList.contains('is-open')){
 return
 }
 modalWindow.classList.remove('is-open')
+}
+function keyPress(evt){
+  if (evt.key != 'Escape') {
+return
+  }
+  funkClosedModal(evt);
 }
