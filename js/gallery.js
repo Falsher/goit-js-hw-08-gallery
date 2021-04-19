@@ -31,17 +31,20 @@ function galleryImg(images) {
     })
     .join('');
 }
-
 function clickListImg(evt) {
 evt.preventDefault()
-  modalImg.src = evt.target.dataset.source;
-  modalWindow.classList.add('is-open')
+const evetTarget = evt.target
+modalImg.src = evetTarget.dataset.source;
+modalImg.alt = evetTarget.alt;
+modalWindow.classList.add('is-open')
 }
 function funkClosedModal(){
 if(!modalWindow.classList.contains('is-open')){
 return
 }
 modalWindow.classList.remove('is-open')
+modalImg.src = '';
+modalImg.alt = '';
 }
 function keyPress(evt){
   if (evt.key != 'Escape') {
