@@ -5,11 +5,11 @@ const modalImg = document.querySelector('.lightbox__image');
 const modalCloseBtn = document.querySelector('.lightbox__button');
 const markUpGallery = galleryImg(galleryItems);
 imageGalleryList.insertAdjacentHTML('beforeend', markUpGallery);
-const bodyClose = document.querySelector('body')
+const bodyClose = document.querySelector('body');
 imageGalleryList.addEventListener('click', clickListImg);
-modalCloseBtn.addEventListener('click', funkClosedModal)
-modalImg.addEventListener('click', funkClosedModal)
-bodyClose.addEventListener('keyup', keyPress)
+modalCloseBtn.addEventListener('click', funkClosedModal);
+modalImg.addEventListener('click', funkClosedModal);
+bodyClose.addEventListener('keyup', keyPress);
 function galleryImg(images) {
   return images
     .map(({ preview, original, description }) => {
@@ -27,28 +27,30 @@ function galleryImg(images) {
       />
     </a>
   </li>
-    `
+    `;
     })
     .join('');
 }
+function updateAttr(alt = '', src = '') {
+  modalImg.alt = alt;
+  modalImg.src = src;
+}
 function clickListImg(evt) {
-evt.preventDefault()
-const evetTarget = evt.target
-modalImg.src = evetTarget.dataset.source;
-modalImg.alt = evetTarget.alt;
-modalWindow.classList.add('is-open')
+  evt.preventDefault();
+  const evetTarget = evt.target;
+  updateAttr(evetTarget.alt, evetTarget.dataset.source);
+  modalWindow.classList.add('is-open');
 }
-function funkClosedModal(){
-if(!modalWindow.classList.contains('is-open')){
-return
+function funkClosedModal() {
+  if (!modalWindow.classList.contains('is-open')) {
+    return;
+  }
+  modalWindow.classList.remove('is-open');
+  updateAttr();
 }
-modalWindow.classList.remove('is-open')
-modalImg.src = '';
-modalImg.alt = '';
-}
-function keyPress(evt){
+function keyPress(evt) {
   if (evt.key != 'Escape') {
-return
+    return;
   }
   funkClosedModal(evt);
 }
